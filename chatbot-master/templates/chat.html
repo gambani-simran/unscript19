@@ -145,7 +145,7 @@
                           <div class="wrap">
                           <input type="text" name="messageText" placeholder="Write your message" id="messageText"/>
                           <i id="chatbot-form-btn-voice" class="fa fa-microphone attachment" aria-hidden="true"></i>
-                          <input type="submit" id="#chatbot-form-btn"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                          <button type="submit" id="chatbot-form-btn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                           </div>
                       </div>
                       </form>
@@ -250,7 +250,7 @@
         
                 $(window).on('keydown', function(e) {
                 if (e.which == 13) {
-                    newMessage();
+                    $('#chatbot-form').submit();
                     return false;
                 }
                 });
