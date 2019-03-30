@@ -5,8 +5,14 @@ from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
 from twilio import twiml
+from time import time
+from datetime import datetime
+from flask_mail import Mail
+from flask_mail import Message
+import smtplib
 
 app = Flask(__name__)
+mail = Mail(app)
 
 
 title = "Medical help app"
@@ -127,6 +133,49 @@ def ask():
 			# type(bot_response)
 			print(bot_response)
 			return jsonify({'status':'OK','answer':bot_response})
+
+
+@app.route('/sendnotif')
+def send():
+
+	print("jid")
+	i = "5c9f0b02eb5a611c78744f2e"
+	vis = pat.find({"_id": ObjectId(i)},{"Visits":1})
+	med = pat.find({"_id": ObjectId(i)},{"medication":1})
+	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
+	# print(vis["Visits"][0])
+	vt = []
+	vd = []
+	i = 0
+	for document in vis: 
+		#print(vis.count())
+		while(i <= vis.count()):
+			vt.append(document["Visits"][i].split(" ")[1])
+			vd.append(document["Visits"][i].split(" ")[0])
+			i = i+1
+
+	print(vt, vd)
+
+	for d in med:
+		meds = d["medication"]["first_dosage"]
+
+	print(meds)
+	
+	for e in exer:
+		exe = e["exercises"]["exercise_time"]
+		#v2 = document["Visits"][1]
+	# 	#v2 = v2.split(" ")[1]
+
+	#print(vis["Visits"])
+
+
+	msg = Message("Hello",
+                  sender="kaustubhtoraskar@gmail.com",
+                  recipients=["jambeard@gmail.com"])
+    
+	msg.body = "Hello Flask message sent from Flask-Mail"
+	mail.send(msg)
+	return "sent"
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
