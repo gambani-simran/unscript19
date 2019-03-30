@@ -2,7 +2,7 @@ from flask import Flask, render_template,request,redirect,url_for # For flask im
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
-from twilio import twiml
+#import twilio.twiml as twiml
 
 app = Flask(__name__)
 title = "Medical help app"
@@ -125,6 +125,20 @@ def sms():
     resp = twiml.Response()
     resp.message('Hello {}, you said: {}'.format(number, message_body))
     return str(resp)
+
+@app.route('/sendnotif')
+def send():
+	print("jid")
+	i = "5c9f0b02eb5a611c78744f2e"
+	vis = pat.find({"_id": ObjectId(i)},{"Visits":1})
+	med = pat.find({"_id": ObjectId(i)},{"medication":1})
+	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
+	for document in vis: 
+		print(document["Visits"][0])
+	for d in med:
+		print(d["medication"]["first_dosage"])
+	return redirect("/")
+
 
 if __name__ == "__main__":
 
