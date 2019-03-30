@@ -12,6 +12,8 @@ else:
 # kernel now ready for use
 while True:
     message = raw_input("Enter your message to the bot: ")
+    x = message.split('b')
+    message= x[1]
     if message == "quit":
         exit()
     elif message == "save":

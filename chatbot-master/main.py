@@ -22,14 +22,19 @@ def ask():
 
 	# kernel now ready for use
 	while True:
-	    if message == "quit":
-	        exit()
-	    elif message == "save":
-	        kernel.saveBrain("bot_brain.brn")
-	    else:
-	        bot_response = kernel.respond(message)
+		#print(type(message))
+		#x = message.split("b")
+		#message = x[1]
+		print(type(message))
+		print(message.decode("utf-8"))
+		if message == "quit":
+			exit()
+		elif message == "save":
+			kernel.saveBrain("bot_brain.brn")
+		else:
+			bot_response = kernel.respond(message)
 	        # print bot_response
-	        return jsonify({'status':'OK','answer':bot_response})
+			return jsonify({'status':'OK','answer':bot_response})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
