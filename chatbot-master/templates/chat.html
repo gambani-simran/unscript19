@@ -1,169 +1,260 @@
+
 <!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Chatbot</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-        <style type="text/css">
-        .fixed-panel {
-            min-height: 400px;
-            max-height: 400px;
-            background-color: #19313c;
-            color: white;
-            overflow: auto;
-        }
-        .media-list {
-            overflow: auto;
-            clear: both;
-            display: table;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            word-break: normal;
-            line-break: strict;
-        }
-        .panel {
-            margin-bottom: 20px;
-            background-color: #fff;
-            border: 6px solid transparent;
-            border-radius: 25px;
-            -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-            box-shadow: 0 1px 1px rgba(0,0,0,.05);
-        }
-        .panel-info {
-            border-color: #0c2735;
-        }
-        .panel-info>.panel-heading {
-            color: white;
-            background-color: #0c2735;
-            border-color: #0c2735;
-        }
-        .panel-footer {
-            padding: 10px 15px;
-            background-color: #0c2735;
-            border-top: 1px solid #0c2735;
-            border-bottom-right-radius: 3px;
-            border-bottom-left-radius: 3px
-        }
-        body {
-            background: rgb(96,143,149); /* Old browsers */
-            background: -moz-linear-gradient(-45deg, rgba(96,143,149,1) 0%, rgba(0,133,136,1) 9%, rgba(12,36,73,1) 52%, rgba(26,30,59,1) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(-45deg, rgba(96,143,149,1) 0%,rgba(0,133,136,1) 9%,rgba(12,36,73,1) 52%,rgba(26,30,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(135deg, rgba(96,143,149,1) 0%,rgba(0,133,136,1) 9%,rgba(12,36,73,1) 52%,rgba(26,30,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#608f95', endColorstr='#1a1e3b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-        }
-        </style>
-    </head>
-    <body>
-        <div class="container background-color: rgb(255,0,255);">
-            <div class="row">
-                <h3 class="text-center"><small><strong>Artificial</strong></small><font color="white"> Intelligence!!! </font><small><strong>Here</strong></small><font color="white"> I am..</font></h3>
-                ​
-                <div class="col-md-4 col-md-offset-4">
-                    <div id="chatPanel" class="panel panel-info">
-                        <div class="panel-heading">
-                            <strong><span class="glyphicon glyphicon-globe"></span> Talk with Me !!! (You: Green / Bot: White) </strong>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HealthMate</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/chat.css">
+</head>
+
+<body>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">pro sidebar</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Jhon
+            <strong>Smith</strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li>
+                <a href="#">
+                  <i class="fa fa-calendar"></i>
+                  <span>Calendar</span>
+                </a>
+              </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fas fa-clock"></i>
+              <span>Prescriptions</span>
+              <span class="badge badge-pill badge-warning">New</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Med 1 - Time 1
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Med 2 - Time 2</a>
+                </li>
+                <li>
+                  <a href="#" ref="#">Med 3 - Time 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-universal-access"></i>
+              <span>Exercises</span>
+              <span class="badge badge-pill badge-danger">3</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Products
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Orders</a>
+                </li>
+                <li>
+                  <a href="#">Credit cart</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell"></i>
+        <span class="badge badge-pill badge-warning notification">3</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope"></i>
+        <span class="badge badge-pill badge-success notification">7</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-cog"></i>
+        <span class="badge-sonar"></span>
+      </a>
+      <a href="#">
+        <i class="fa fa-power-off"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+        <div id = "frame">
+                <div class="content">
+                        <div class="contact-profile">
+                            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                            <p>Harvey Specter</p>
                         </div>
-                        <div class="panel-body fixed-panel">
-                            <ul class="media-list">
+                        <div class="messages">
+                            <ul class="message-list">
+                                <li class="sent">
+                                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                                </li>
+                                <li class="replies">
+                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                                    <p>When you're backed against the wall, break the god damn thing down.</p>
+                                </li>
                             </ul>
                         </div>
-                        <div class="panel-footer">
-                            <form method="post" id="chatbot-form">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter Message" name="messageText" id="messageText" autofocus/>
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-info" type="button" id="chatbot-form-btn">Send</button>
-                                        <button class="btn btn-info" type="button" id="chatbot-form-btn-clear">Clear</button>
-                                        <button class="btn btn-info" type="button" id="chatbot-form-btn-voice">Voice</button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
+                      <form method="post" id="chatbot-form">
+                      <div class="message-input">
+                          <div class="wrap">
+                          <input type="text" name="messageText" placeholder="Write your message" id="messageText"/>
+                          <i id="chatbot-form-btn-voice" class="fa fa-microphone attachment" aria-hidden="true"></i>
+                          <input type="submit" id="#chatbot-form-btn"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                          </div>
+                      </div>
+                      </form>
                     </div>
-                </div>
-            </div>
         </div>
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script>
-            var exports = {};
-        </script>
-        <script src="https://unpkg.com/speech-to-text@0.7.4/lib/index.js"></script>
-        <script>
-        $(function() {
-            var synth = window.speechSynthesis;
+    </div>
 
-            var msg = new SpeechSynthesisUtterance();
-            var voices = synth.getVoices();
-            msg.voice = voices[0];
-            msg.rate = 1;
-            msg.pitch = 1;
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+      var exports = {};
+  </script>
+  <script src="https://unpkg.com/speech-to-text@0.7.4/lib/index.js"></script>
+  <script>
+    $(function() {
+        // var synth = window.speechSynthesis;
 
-            $('#chatbot-form-btn').click(function(e) {
-                e.preventDefault();
-                $('#chatbot-form').submit();
-            });
-            $('#chatbot-form-btn-clear').click(function(e) {
-                e.preventDefault();
-                $('#chatPanel').find('.media-list').html('');
-            });
-            $('#chatbot-form-btn-voice').click(function(e) {
-                e.preventDefault();
+        // var msg = new SpeechSynthesisUtterance();
+        // var voices = synth.getVoices();
+        // msg.voice = voices[0];
+        // msg.rate = 1;
+        // msg.pitch = 1;
+        // $('#chatbot-form-btn-voice').click(function(e) {
+        //     e.preventDefault();
 
-                var onAnythingSaid = function (text) {
-                    console.log('Interim text: ', text);
-                };
-                var onFinalised = function (text) {
-                    console.log('Finalised text: ', text);
-                    $('#messageText').val(text);
-                };
-                var onFinishedListening = function () {
-                    // $('#chatbot-form-btn').click();
-                };
+        //     var onAnythingSaid = function (text) {
+        //         console.log('Interim text: ', text);
+        //     };
+        //     var onFinalised = function (text) {
+        //         console.log('Finalised text: ', text);
+        //         $('#messageText').val(text);
+        //     };
+        //     var onFinishedListening = function () {
+        //         // $('#chatbot-form-btn').click();
+        //     };
 
-                try {
-                    var listener = new SpeechToText(onAnythingSaid, onFinalised, onFinishedListening);
-                    listener.startListening();
+        //     try {
+        //         var listener = new SpeechToText(onAnythingSaid, onFinalised, onFinishedListening);
+        //         listener.startListening();
 
-                    setTimeout(function () {
-                        listener.stopListening();
-                        if ($('#messageText').val()) {
-                            $('#chatbot-form-btn').click();
-                        }
-                    }, 5000);
-                } catch (error) {
-                    console.log(error);
-                }
-            });
-
-            $('#chatbot-form').submit(function(e) {
-                e.preventDefault();
-                var message = $('#messageText').val();
-                $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style = "text-align:right; color : #2EFE2E" class="media-body">' + message + '<hr/></div></div></div></li>');
-
-                $.ajax({
-                    type: "POST",
-                    url: "/ask",
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        $('#messageText').val('');
-                        var answer = response.answer;
-                        const chatPanel = document.getElementById("chatPanel");
-                        $(".media-list").append('<li class="media"><div class="media-body"><div class="media"><div style = "color : white" class="media-body">' + answer + '<hr/></div></div></div></li>');
-                        $(".fixed-panel").stop().animate({ scrollTop: $(".fixed-panel")[0].scrollHeight}, 1000);
-                        
-                        msg.text = answer;
-                        speechSynthesis.speak(msg);
-                    },
-                    error: function(error) {
-                        console.log(error);
+        //         setTimeout(function () {
+        //             listener.stopListening();
+        //             if ($('#messageText').val()) {
+        //                 $('#chatbot-form-btn').click();
+        //             }
+        //         }, 5000);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // });
+    });
+    </script>
+    <script>
+       $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+               
+              function newMessage(type,message) {
+                    if($.trim(message) == '') {
+                        return false;
                     }
+                    $('#message-list').append('<li class="'+ type +'"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+                    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+                };
+
+                // $('#chatbot-form-btn').click(function(e) {
+                //   message = $(".message-input input").val();
+                //   e.preventDefault();
+                //   newMessage('sent',message);
+                //   // console.log("idhar aa rha hai "+ message);
+                // });
+
+                $('#chatbot-form').submit(function(e) {
+                    e.preventDefault();
+                    var message = $(".message-input input").val();
+                    console.log(message);
+                    console.log("in ajax call "+$('#chatbot-form').serialize().toString());
+                    $('.message-list').append('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+                    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+                    $.ajax({
+                        type: "POST",
+                        url: "/ask",
+                        data: $('#chatbot-form').serialize(),
+                        success: function(response) {
+                            $('#messageText').val('');
+                            console.log(response.answer);
+                            $('.message-list').append('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + response.answer + '</p></li>').appendTo($('.messages ul'));
+                            $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+                            //msg.text = answer;
+                            //speechSynthesis.speak(msg);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
                 });
-            });
-        });
-        </script>
-    </body>
+        
+                $(window).on('keydown', function(e) {
+                if (e.which == 13) {
+                    newMessage();
+                    return false;
+                }
+                });
+    </script>
+</body>
+
 </html>

@@ -8,12 +8,12 @@ app = Flask(__name__)
 def hello():
     return render_template('chat.html')
 
+
 @app.route("/ask", methods=['POST'])
 def ask():
 	message = request.form['messageText'].encode('utf-8').strip()
 
 	kernel = aiml.Kernel()
-
 	if os.path.isfile("bot_brain.brn"):
 	    kernel.bootstrap(brainFile = "bot_brain.brn")
 	else:
@@ -26,14 +26,16 @@ def ask():
 		#x = message.split("b")
 		#message = x[1]
 		print(type(message))
-		print(message.decode("utf-8"))
 		if message == "quit":
 			exit()
 		elif message == "save":
 			kernel.saveBrain("bot_brain.brn")
 		else:
-			bot_response = kernel.respond(message)
-	        # print bot_response
+			b = message.decode('utf-8')
+			print(b+"decoded msg")
+			bot_response = kernel.respond(b)
+			# type(bot_response)
+			print(bot_response)
 			return jsonify({'status':'OK','answer':bot_response})
 
 if __name__ == "__main__":
