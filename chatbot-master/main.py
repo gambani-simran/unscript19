@@ -22,10 +22,23 @@ def ask():
 
 	# kernel now ready for use
 	while True:
-		#print(type(message))
-		#x = message.split("b")
-		#message = x[1]
-		print(type(message))
+		distress = str(message)
+		distress = distress[2:len(distress)-1]
+		print(distress)
+		if distress.split(' ')[0] == "call":
+			receiver = distress.split(' ')[1]
+			print(receiver)
+			"""account_sid = "ACead452ce756e314717f4cee6e0cac0c7"
+			auth_token = "36308443a7f8388787f4e4f9969bc6fc"
+			# (201) 817-4840 Twilio number
+			client = Client(account_sid,auth_token)
+			call = client.calls.create(
+					to = "+919821593690",
+					from_ = "+12018174840",
+					url = "http://demo.twilio.com/docs/voice.xml"
+				)
+			print(call.sid)
+			"""
 		if message == "quit":
 			exit()
 		elif message == "save":
