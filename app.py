@@ -2,7 +2,7 @@ from flask import Flask, render_template,request,redirect,url_for # For flask im
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
-#import twilio.twiml as twiml
+from twilio import twiml
 
 app = Flask(__name__)
 title = "Medical help app"
@@ -22,7 +22,7 @@ def lists ():
 	#Display the all Tasks
 	todos_l = pat.find()
 	a1="active"
-	return render_template('index.html',a1=a1,pat=todos_l,t=title,h=heading)
+	return render_template('index.html',a1=a1,pat=todos_l,t=title,h=heading,db = pat)
 
 @app.route("/")
 def hello():
@@ -32,7 +32,7 @@ def tasks ():
 	#Display the Uncompleted Tasks
 	todos_l = pat.find({"done":"no"})
 	a2="active"
-	return render_template('index.html',a2=a2,pat=todos_l,t=title,h=heading)
+	return render_template('index.html',a2=a2,pat=todos_l,t=title,h=heading,db=pat)
 
 """
 @app.route("/completed")
@@ -62,10 +62,19 @@ def done ():
 def action ():
 	#Adding a patient data
 	name=request.values.get("name")
-	desc=request.values.get("desc")
-	date=request.values.get("date")
-	pr=request.values.get("pr")
-	pat.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
+	gender=request.values.get("gender")
+	dob=request.values.get("dob")
+	contact=request.values.get("contact")
+	ms=request.values.get("ms")
+	age=request.values.get("age")
+	nextVisit=request.values.get("nextVisit")
+	doctor_name=request.values.get("doctor_name")
+	contact_info=request.values.get("contact_info")
+	medicine_name=request.values.get("medicine_name")
+	pat.insert({"name":name,"gender":gender,"dob":dob,"contact":contact,"maritalstatus":ms,"Age":age,"Vists":nextVisit,"assigned_doctors":{"name":doctor_name,"contact_info":contact_info,"specialization":"MBBS"},"medication":{"medicine_name":medicine_name,"dosage":"5mg","dosage_interval":"3","first_dosage":"09:00:00","dosage_count":"4"},"exercises":{"exercise_name":"Shavasan","exercise_link":"","exercise_time":"06:30:00"}});
+		
+		
+	#pat.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
 	return redirect("/list")
 
 @app.route("/remove")
@@ -73,7 +82,7 @@ def remove ():
 	#Deleting a Task with various references
 	key=request.values.get("_id")
 	pat.remove({"_id":ObjectId(key)})
-	return redirect("/")
+	return redirect("/list")
 
 @app.route("/update")
 def update ():
@@ -126,20 +135,6 @@ def sms():
     resp.message('Hello {}, you said: {}'.format(number, message_body))
     return str(resp)
 
-@app.route('/sendnotif')
-def send():
-	print("jid")
-	i = "5c9f0b02eb5a611c78744f2e"
-	vis = pat.find({"_id": ObjectId(i)},{"Visits":1})
-	med = pat.find({"_id": ObjectId(i)},{"medication":1})
-	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
-	for document in vis: 
-		print(document["Visits"][0])
-	for d in med:
-		print(d["medication"]["first_dosage"])
-	return redirect("/")
-
-
 if __name__ == "__main__":
 
-    app.run()
+    app.run(debug=True)
