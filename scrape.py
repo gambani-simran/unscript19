@@ -6,10 +6,10 @@ final = []
 que = []
 for doc in qa_dict:
 	qa_pair = []
-	qa_pair.append("<category><pattern>" +doc['question']+"</pattern><template>"+doc['answer']+"</template></category>")
-	string = str(doc['question'])
+	qa_pair.append("<category><pattern>" +str(doc['question']).upper()+"</pattern><template>"+doc['answer']+"</template></category>")
+	string = str(doc['question']).upper()
 	if string not in que:
-		que.append(doc['question'])
+		que.append(string)
 		if qa_pair not in final:
 			final.append(qa_pair)
 
