@@ -62,10 +62,14 @@ def done ():
 def action ():
 	#Adding a patient data
 	name=request.values.get("name")
-	desc=request.values.get("desc")
-	date=request.values.get("date")
-	pr=request.values.get("pr")
-	pat.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
+	gender=request.values.get("gender")
+	dob=request.values.get("dob")
+	contact=request.values.get("contact")
+	maritalstatus=request.values.get("ms")
+	Age=request.values.get("age")
+	gender=request.values.get("nextVisit")
+	
+	pat.insert({ "name":name, "gender":gender, "dob":dob, "contact":contact, "maritalstatus":maritalstatus, "Age":Age, "gender":gender})
 	return redirect("/list")
 
 @app.route("/remove")
@@ -117,6 +121,7 @@ def search():
 	return render_template('searchlist.html',pat=todos_l,t=title,h=heading)
 """
 
+"""
 @app.route('/sms', methods=['POST'])
 def sms():
     number = request.form['From']
@@ -126,6 +131,8 @@ def sms():
     resp.message('Hello {}, you said: {}'.format(number, message_body))
     return str(resp)
 
+"""
+
 @app.route('/sendnotif')
 def send():
 	print("jid")
@@ -133,8 +140,9 @@ def send():
 	vis = pat.find({"_id": ObjectId(i)},{"Visits":1})
 	med = pat.find({"_id": ObjectId(i)},{"medication":1})
 	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
+	i=0
 	for document in vis: 
-		print(document["Visits"][0])
+		print(document["Visits"])
 	for d in med:
 		print(d["medication"]["first_dosage"])
 	return redirect("/")
