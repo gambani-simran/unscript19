@@ -7,6 +7,7 @@ import os
 from twilio import twiml
 from time import time
 from datetime import datetime
+from datetime import timedelta
 from flask_mail import Mail
 from flask_mail import Message
 import smtplib
@@ -144,37 +145,53 @@ def send():
 	med = pat.find({"_id": ObjectId(i)},{"medication":1})
 	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
 	# print(vis["Visits"][0])
+	msg = Message("Hello!",
+                  sender="kaustubhtoraskar@gmail.com",
+                  recipients=["jambeard@gmail.com"])
 	vt = []
 	vd = []
 	i = 0
 	for document in vis: 
-		#print(vis.count())
 		while(i <= vis.count()):
 			vt.append(document["Visits"][i].split(" ")[1])
+			dt = datetime.strptime(vt[i],'%H:%M:%S')
 			vd.append(document["Visits"][i].split(" ")[0])
-			i = i+1
+			dnow = datetime.now()
+			if(dnow.time()<dt.time()):
+				msg.body = "You have got visit on "+vd[i] + "at " + str(dt.time())
+				mail.send(msg)
+		i = i+1
 
 	print(vt, vd)
 
+	medtimes = []
 	for d in med:
 		meds = d["medication"]["first_dosage"]
+		medt = datetime.strptime(meds,'%H:%M:%S')
+	
+	for i in range(d["medication"]["dosage_count"]):
+		medt = medt + timedelta(hours=d["medication"]["dosage_interval"])
+		medtimes.append(medt)
+
+	for k in medtimes :
+		dnow = datetime.now()
+		if(dnow.time()<k.time()):
+			msg.body = "You have dosage of medicine "+d["medication"]["medicine_name"]+" at" + str(k.time())
+			mail.send(msg)
+
 
 	print(meds)
 	
 	for e in exer:
 		exe = e["exercises"]["exercise_time"]
+		if(dnow.time()<exe.time()):
+			msg.body = "You gotta do this exercise "+e["exercises"]["exrcise_name"]+" at" + str(exe.time())
+			mail.send(msg)
 		#v2 = document["Visits"][1]
 	# 	#v2 = v2.split(" ")[1]
 
 	#print(vis["Visits"])
 
-
-	msg = Message("Hello",
-                  sender="kaustubhtoraskar@gmail.com",
-                  recipients=["jambeard@gmail.com"])
-    
-	msg.body = "Hello Flask message sent from Flask-Mail"
-	mail.send(msg)
 	return "sent"
 
 if __name__ == "__main__":
