@@ -59,23 +59,31 @@
 		
 	</form>
 	</table>
-	<script>
-	/*function addData(){
-		var name = document.getElementById("name").value;
-		var gender = document.getElementById("gender").value;
-		var dob = document.getElementById("dob").value;
-		var contact = document.getElementById("contact").value;
-		var ms = document.getElementById("ms").value;
-		var age = document.getElementById("age").value;
-		var nextVisit = document.getElementById("nextVisit").value;
-		var doctor_name = document.getElementById("doctor_name").value;
-		var contact_info = document.getElementById("contact_info").value;
-		var medicine_name = document.getElementById("medicine_name").value;
+	
+	<form action="/verify" method="POST">
+	{% if chats_till_now[0] %}
+	<b><big>Patient Records :</big></b>
+	<table>
+	    <tr>
+	    	<th class="b">Query</th>
+	    	<th class="br">Response by Chatbot</th>
+	    	<th class="verify">Verify</th>
+		
+	    </tr>
+		{% for pairs in chats_till_now %}
+		<tr>
+			<td class="b">{{ pairs[0] }}</td>
+			<td class="br"><input type="text" name="response">{{ pairs[1] }}</td>
+			<td class="verify"><button type="submit">verify</button></td>
+		</tr>
+		{% endfor %}
+	</table>
 
-		db.insert({"name":name,"gender":gender,"dob":dob,"contact":contact_info,"maritalstatus":ms,"Age":age,"Vists":nextVisit,"assigned_doctors":{"name":doctor_name,"contact_info":"9821593690","specialization":"MBBS"},"medication":{"medicine_name":medicine_name,"dosage":"5mg","dosage_interval":"3","first_dosage":"09:00:00","dosage_count":"4"},"exercises":{"exercise_name":"Shavasan","exercise_link":"","exercise_time":"06:30:00"}});
-		
-		
-	}*/
-	</script>
+	{% else %}
+		<h4>No Chats in the List !!</h4>
+
+	{% endif %}
+</form>
+
 </body>
 </html>

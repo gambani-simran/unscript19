@@ -130,14 +130,16 @@
                         </div>
                         <div class="messages">
                             <ul class="message-list">
+                              {% for chat in final_chats %}
                                 <li class="sent">
                                     <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                                    <p>{{ chat[0] }}</p>
                                 </li>
                                 <li class="replies">
                                     <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                    <p>When you're backed against the wall, break the god damn thing down.</p>
+                                    <p>{{ chat[1] }}</p>
                                 </li>
+                              {% endfor %}
                             </ul>
                         </div>
                       <form method="post" id="chatbot-form">
