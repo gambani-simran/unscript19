@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request, jsonify, redirect, url_for, make_response
+=======
+<<<<<<< HEAD
+from flask import Flask, render_template, request, jsonify, redirect, make_response
+=======
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
+>>>>>>> f37f515e0a71b482596d9a04db6fa7e1bcd3c77d
 import aiml
 from twilio.rest import Client
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
 from twilio import twiml
-import time
-from threading import Timer
+<<<<<<< HEAD
 from time import time
 from datetime import datetime
 from datetime import date
@@ -16,6 +23,23 @@ from flask_mail import Message
 import smtplib
 import json
 from flask import Response
+=======
+import time
+from threading import Timer
+<<<<<<< HEAD
+from time import time
+from datetime import datetime
+from datetime import date
+from datetime import timedelta
+from flask_mail import Mail
+from flask_mail import Message
+import smtplib
+import json
+from flask import Response
+=======
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
+
+>>>>>>> f37f515e0a71b482596d9a04db6fa7e1bcd3c77d
 app = Flask(__name__)
 
 
@@ -139,6 +163,123 @@ def ask():
 			bot_response = kernel.respond(b)
 			# type(bot_response)
 			print(bot_response)
+<<<<<<< HEAD
+			return jsonify({'status':'OK','answer':bot_response})
+
+
+@app.route('/getData')
+def getPatientData():
+
+	print("pid")
+	#flask.session['_id']
+	i="5c9f0b02eb5a611c78744f2e"
+	vis = pat.find({"_id": ObjectId(i)},{"Visits":1})
+	med = pat.find({"_id": ObjectId(i)},{"medication":1})
+	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
+	vdates=[]
+	for document in vis: 
+		while(i <= vis.count()):
+			vdates.append(document["Visits"][i].split(" ")[0])
+		i=i+1
+
+	mtimes=[]
+	for d in med:
+		meds = d["medication"]["first_dosage"]
+		medt = datetime.strptime(meds,'%H:%M:%S')
+	
+	for i in range(d["medication"]["dosage_count"]):
+		medt = medt + timedelta(hours=d["medication"]["dosage_interval"])
+		mtimes.append(medt)
+
+	for k in medtimes :
+		dnow = datetime.now()
+		if(dnow.time()<k.time()):
+			prescription={}
+			prescription['name']=d["medication"]["medicine_name"]
+			prescription['time']=medt[0]
+			mtimes.append(prescription)
+
+	for e in exer:
+		exe = e["exercises"]["exercise_time"]
+		if(dnow.time()<exe.time()):
+			exercise = e["exercise"]["exercise_name"]
+
+	#js = [ { "v" : vdates, "m" : mtimes , "ex" : exercise} ]
+
+	#return jsonify(		v = vdates,		m = mtimes,		ex = exercise		)
+	#return Response(json.dumps(js),  mimetype='application/json')
+
+	#return make_response(dumps(vdates,mtimes,exercise))
+	return jsonify({'ex':exercise})
+			
+
+	
+
+
+
+@app.route('/sendnotif')
+def send():
+
+	print("jid")
+	i = "5c9f0b02eb5a611c78744f2e"
+	vis = pat.find({"_id": ObjectId(i)},{"Visits":1})
+	med = pat.find({"_id": ObjectId(i)},{"medication":1})
+	exer = pat.find({"_id": ObjectId(i)},{"exercises":1})
+	# print(vis["Visits"][0])
+	msg = Message("Hello!",
+                  sender="kaustubhtoraskar@gmail.com",
+                  recipients=["jambeard@gmail.com"])
+	vt = []
+	vd = []
+	i = 0
+	for document in vis: 
+		while i <= vis.count():
+			vt.append(document["Visits"][i].split(" ")[1])
+			dt = datetime.strptime(vt[i],'%H:%M:%S')
+			vd.append(document["Visits"][i].split(" ")[0])
+			dnow = datetime.now()
+			"""date_format = "%m:%d:%Y"
+			a = datetime.strptime(vd[i], date_format)
+			b = datetime.date.today()
+			delta = b - a
+			c = delta.days"""
+			if dnow.time()<dt.time():
+				msg.body = "You have got visit on "+vd[i] + "at " + str(dt.time())
+				mail.send(msg)
+		i = i+1
+
+	print(vt, vd)
+
+	medtimes = []
+	for d in med:
+		meds = d["medication"]["first_dosage"]
+		medt = datetime.strptime(meds,'%H:%M:%S')
+	
+	for i in range(d["medication"]["dosage_count"]):
+		medt = medt + timedelta(hours=d["medication"]["dosage_interval"])
+		medtimes.append(medt)
+
+	for k in medtimes :
+		dnow = datetime.now()
+		if(dnow.time()<k.time()):
+			msg.body = "You have dosage of medicine "+d["medication"]["medicine_name"]+" at" + str(k.time())
+			mail.send(msg)
+
+
+	print(meds)
+	
+	for e in exer:
+		exe = e["exercises"]["exercise_time"]
+		if(dnow.time()<exe.time()):
+			msg.body = "You gotta do this exercise "+e["exercises"]["exrcise_name"]+" at" + str(exe.time())
+			mail.send(msg)
+		#v2 = document["Visits"][1]
+	# 	#v2 = v2.split(" ")[1]
+
+	#print(vis["Visits"])
+
+	return redirect('/chat')
+=======
 			pair =[]
 			pair.append(b)
 			pair.append(bot_response)
@@ -302,7 +443,12 @@ def verify():
 	print(correctResponse)
 	if correctResponse!="":
 		verifyResponse[x-1][1] = correctResponse
+<<<<<<< HEAD
 	return redirect("/list")	
+=======
+	return redirect("/chat")	
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
+>>>>>>> f37f515e0a71b482596d9a04db6fa7e1bcd3c77d
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

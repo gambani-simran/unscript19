@@ -63,14 +63,14 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Med 1 - Time 1
+                  <a href="#">Med 1 - 09:00:00
                   </a>
                 </li>
                 <li>
-                  <a href="#">Med 2 - Time 2</a>
+                  <a href="#">Med 2 - 12:00:00</a>
                 </li>
                 <li>
-                  <a href="#" ref="#">Med 3 - Time 3</a>
+                  <a href="#" ref="#">Med 3 - 3:00:00</a>
                 </li>
               </ul>
             </div>
@@ -84,15 +84,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Products
+                  <a href="#">Shavasan
                   </a>
                 </li>
-                <li>
-                  <a href="#">Orders</a>
-                </li>
-                <li>
-                  <a href="#">Credit cart</a>
-                </li>
+                
               </ul>
             </div>
           </li>
@@ -126,10 +121,12 @@
                 <div class="content">
                         <div class="contact-profile">
                             <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                            <p>Harvey Specter</p>
+                            <p>Dr. Dre</p>
                         </div>
                         <div class="messages">
                             <ul class="message-list">
+<<<<<<< HEAD
+=======
                               {% for chat in final_chats %}
                                 <li class="sent">
                                     <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
@@ -140,6 +137,7 @@
                                     <p>{{ chat[1] }}</p>
                                 </li>
                               {% endfor %}
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
                             </ul>
                         </div>
                       <form method="post" id="chatbot-form">
@@ -164,6 +162,39 @@
         crossorigin="anonymous"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <script>
+      $(function(){
+        $.ajax({
+          type:'GET',
+          url:'/getData',
+          success : function(resp){
+            console.log(resp);
+          },
+          error:function(err){
+            console.log(err);
+          }
+        });
+      });
+
+      var ajax_call = function() {
+      //your jQuery ajax code
+      $.ajax({
+          type:'POST',
+          url:'/sendnotif',
+          success : function(resp){
+            console.log(resp);
+          },
+          error:function(err){
+            console.log(err);
+          }
+        });
+      };
+
+      var interval = 1000 * 60 * 30; // where X is your every X minutes
+
+      setInterval(ajax_call, interval);
+
+    </script>
     <script>
       var exports = {};
   </script>

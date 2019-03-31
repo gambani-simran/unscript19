@@ -9,12 +9,10 @@
 
 
 <learn>aiml/standard/std-botmaster.aiml</learn>
-<learn>aiml/standard/std-connect.aiml</learn>
+<learn>aiml/standard/std-brain.aiml</learn>
 <learn>aiml/standard/std-dictionary.aiml</learn>
-<learn>aiml/standard/std-disconnect.aiml</learn>
-<learn>aiml/standard/std-dont.aiml</learn>
-<learn>aiml/standard/std-errors.aiml</learn>
-<learn>aiml/standard/std-gender.aiml</learn>
+<learn>aiml/standard/std-hello.aiml</learn>
+
 
 
 <learn>aiml/standard/std-knowledge.aiml</learn>
