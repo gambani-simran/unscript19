@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request, jsonify, redirect, make_response
+=======
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
 import aiml
 from twilio.rest import Client
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
 from twilio import twiml
+<<<<<<< HEAD
 from time import time
 from datetime import datetime
 from datetime import date
@@ -14,9 +19,12 @@ from flask_mail import Message
 import smtplib
 import json
 from flask import Response
+=======
+import time
+from threading import Timer
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
 
 app = Flask(__name__)
-mail = Mail(app)
 
 
 title = "Medical help app"
@@ -25,6 +33,9 @@ heading = "Application for medical help"
 client = MongoClient("mongodb://127.0.0.1:27017") #host uri
 db = client.MedicalApp    #Select the database
 pat = db.patients #Select the collection name
+verifyResponse = []
+correctResponse = ""
+chat_len = 0
 """
 def redirect_url():
     return request.args.get('next') or \
@@ -36,7 +47,7 @@ def lists ():
 	#Display the all Tasks
 	todos_l = pat.find()
 	a1="active"
-	return render_template('index.html',a1=a1,pat=todos_l,t=title,h=heading,db = pat)
+	return render_template('index.html',a1=a1,pat=todos_l,t=title,h=heading,db = pat,chats_till_now=verifyResponse)
 
 @app.route("/")
 def hello():
@@ -79,7 +90,7 @@ def sms():
 
 @app.route("/chat")
 def chats():
-    return render_template('chat.html')
+    return render_template('chat.html',final_chats = verifyResponse)
 
 @app.route("/validate",methods = ['POST'])
 def checkValid():
@@ -136,6 +147,7 @@ def ask():
 			bot_response = kernel.respond(b)
 			# type(bot_response)
 			print(bot_response)
+<<<<<<< HEAD
 			return jsonify({'status':'OK','answer':bot_response})
 
 
@@ -251,6 +263,39 @@ def send():
 	#print(vis["Visits"])
 
 	return redirect('/chat')
+=======
+			pair =[]
+			pair.append(b)
+			pair.append(bot_response)
+			verifyResponse.append(pair)
+			print(verifyResponse)
+			chat_len = len(verifyResponse)
+			todos_l = pat.find()
+			a1="active"
+			return redirect(url_for('.lists',a1=a1,pat=todos_l,t=title,h=heading,db = pat,chats_till_now=verifyResponse,last_index=chat_len))
+
+			"""
+			time.delay(30)
+			print(correctResponse)
+			if(correctResponse==""):
+				return jsonify({'status':'OK','answer':bot_response})
+			else:
+				return jsonify({'status':'OK','answer':correctResponse})
+
+
+			"""
+
+
+@app.route("/verify", methods=['POST'])
+def verify():
+	print("HI")
+	correctResponse = request.values.get("response")
+	x = len(verifyResponse)
+	print(correctResponse)
+	if correctResponse!="":
+		verifyResponse[x-1][1] = correctResponse
+	return redirect("/chat")	
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

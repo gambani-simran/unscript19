@@ -125,6 +125,19 @@
                         </div>
                         <div class="messages">
                             <ul class="message-list">
+<<<<<<< HEAD
+=======
+                              {% for chat in final_chats %}
+                                <li class="sent">
+                                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                                    <p>{{ chat[0] }}</p>
+                                </li>
+                                <li class="replies">
+                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                                    <p>{{ chat[1] }}</p>
+                                </li>
+                              {% endfor %}
+>>>>>>> fd107827344070f9dabcafdec8a249a6ad6ab99c
                             </ul>
                         </div>
                       <form method="post" id="chatbot-form">
