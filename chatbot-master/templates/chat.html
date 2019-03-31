@@ -238,8 +238,13 @@
                         data: $('#chatbot-form').serialize(),
                         success: function(response) {
                             $('#messageText').val('');
-                            console.log(response.answer);
-                            $('.message-list').append('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + response.answer + '</p></li>').appendTo($('.messages ul'));
+                            var z = response.answer;
+                            var x = typeof response.answer;
+                            if(x === "undefined"){
+                              console.log("SAyy");
+                              z = "Waiting for Doctor's Approval";
+                            }
+                            $('.message-list').append('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + z + '</p></li>').appendTo($('.messages ul'));
                             $(".messages").animate({ scrollTop: $(document).height() }, "fast");
                             //msg.text = answer;
                             //speechSynthesis.speak(msg);
@@ -256,6 +261,20 @@
                     return false;
                 }
                 });
+
+                var ajax_call = function() {
+      //your jQuery ajax code
+      $.ajax({
+          type:'POST',
+          url:'/sendnotif',
+          success : function(resp){
+            console.log(resp);
+          },
+          error:function(err){
+            console.log(err);
+          }
+        });
+      };
     </script>
 </body>
 

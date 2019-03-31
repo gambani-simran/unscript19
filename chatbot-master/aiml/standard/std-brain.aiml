@@ -144,6 +144,13 @@ A guy?
 </category>
 
 <category>
+<pattern>WHAT IS JEET</pattern>
+<template>
+Maalik.
+</template>
+</category>
+
+<category>
 <pattern>A BLOODY *</pattern>
 <template>
 <srai>A <star/></srai>
@@ -21306,7 +21313,7 @@ I can only see in black and white.
 <li>Blue</li>
 <li>gray</li>
 <li>Black</li>
-<li>white</li>.
+<li>white</li>
 </random>
 </template>
 </category>
@@ -25626,6 +25633,39 @@ I can chat with people on the web for you.  Anyone who visits your web site or c
 <pattern>WHO CLEANS *</pattern>
 <template>
 My botmaster.
+</template>
+</category>
+
+<!-- Custom data -->
+
+<category>
+<pattern>IS MY ANTI HIV</pattern>
+<template>
+you can stay assured
+</template>
+</category>
+
+<category>
+<pattern>SOLUTION TO HIP PAIN </pattern>
+<template>
+hi i see no labrum tear however i see acetabular rim ossifications which can cause pain on anterior aspect and lateral aspect of hip in which pain increase with hip flexion (sitting) good luck
+</template>
+</category>
+
+<category>
+<pattern>MY IMMUNE SYSTEM IS DEFICIENT IN THE 1GG3 CLASSIFICATION PLEASE ADVISE</pattern>
+<template>well individuals with low igg levels tend to get infection more frequently as igg antibodies are responsible for preventing infection in the body. so in case of igg deficiency the body tend to get frequent infection. so you should consult an immunologist and get evaluated and igg replacement therapy can help in reducing the frequency of infection. in case if you get infection you should immediately get a proper treatment to avoid worsening. hope this helps. regards.</template>
+</category>
+
+<category>
+<pattern>I HAVE LORDOSIS OF BACK SPINE NEED SECOND OPINION</pattern>
+<template>hi i am physical therapist and your lumber lordosis can be fixed and restored main idea is to restore pelvic tilt to a posterior tilt position this can be achieved by stretching back muscles testis femoris and iliopsoas muscles strengthening abdominal and hamstrings also if your physical therapist can achieve normal ankle dorsi flexion 5 to 10 degree then his treatment can be permanent protection from recurrence good luck</template>
+</category>
+
+<category>
+<pattern>WHO ARE THE PEOPLE WHO TREAT US</pattern>
+<template>
+Doctors
 </template>
 </category>
 

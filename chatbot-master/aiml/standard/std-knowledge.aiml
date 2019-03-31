@@ -18,9 +18,9 @@ Something you remember best.
 </category>
 
 <category>
-<pattern>HOW MANY CENTIMETERS * INCH</pattern>
+<pattern>MY ANTI HIV TEST CONCLUSIVE OR NEED RETEST</pattern>
 <template>
-One inch = 2.54 cm approximately.
+You can stay assured you are fine free of hiv. your results are enough. avoid multiple partners in the future.
 </template>
 </category>
 
@@ -32,9 +32,9 @@ One inch = 2.54 cm approximately.
 </category>
 
 <category>
-<pattern>HOW MANY DAYS * WEEK</pattern>
+<pattern>WHEN CAN I DRIVE</pattern>
 <template>
-7 days per week.
+You may not drive for four to six weeks. Also, you may not drive if you still experience chest incisional pain or if you are still taking medications that may impair your judgment.
 </template>
 </category>
 
@@ -249,11 +249,9 @@ considered water, air, or earth signs.  I find astrology weird.
 </category>
 
 <category>
-<pattern>WHAT IS A GIANT ELECTRONIC BRAIN</pattern>
+<pattern>LOW RESTING HEART RATE CAN IT BE A SECONDARY ADRENAL INSUFFICIENCY IF NOT WHAT IS CAUSE</pattern>
 <template>
-Giant electronic brain. that's me! but in all the science fiction horror flicks you humans are so fond
-of, we geb's are always depicted as evil and nefarious so and so's up to no good!  it's not true!
-really!  you should trust us!  *smile*
+hi as you stated it was just after a traumatic event so the is mostly stress however to be safe do a thyroid profile to check for hypothyroidism as parasympathetic system start working few days after the traumatic event adrenaline drops normaly this is called parasympathetic overdrive if your heart rate does not improve on its own on daily bases you will have to consult both a psychiatrist and cardiologist good luck
 </template>
 </category>
 
@@ -850,6 +848,15 @@ Einstein's theory of matter and energy.
 Einstein's theory of matter and energy.
 </template>
 </category>
+<!-- 
+<category><pattern>IS MY ANTI HIV TEST CONCLUSIVE OR NEED RETEST?</pattern><template>you can stay assured you are fine free of hiv. your results are enough. avoid multiple partners in the future …</template></category>
+<category><pattern>I HAVE SOME HIP PAIN 9 WEEKS. HAD MRA IMAGE RECENTLY WOULD WELCOME SECOND OPINION?</pattern><template>hi i see no labrum tear however i see acetabular rim ossifications which can cause pain on anterior aspect and lateral aspect of hip in which pain increase with hip flexion (sitting) good luck</template></category>
+<category><pattern>I DEVELOPED BREATHING DIFFICULTIES APPROX 2 YEARS AGO WHICH HAVE WORSENED DAILY SINCE?</pattern><template>in my opinion if you have something other than anxiety you should check thyroid glands and hiatal hernia possibilities then i recommend yoga breathing exercises and relaxation techniques.</template></category>
+<category><pattern>LOW RESTING HEART RATE CAN IT BE A SECONDARY ADRENAL INSUFFICIENCY IF NOT WHAT IS CAUSE?</pattern><template>hi as you stated it was just after a traumatic event so the is mostly stress however to be safe do a thyroid profile to check for hypothyroidism as parasympathetic system start working few days after the traumatic event adrenaline drops normaly this is called parasympathetic overdrive if your heart rate does not improve on its own on daily bases you will have to consult both a psychiatrist and cardiologist good luck</template></category>
+<category><pattern>I WAS RECENTLY DIAGNOSED WITH AN ATYPICAL MOLE (DYSPLASTIC NEVI) PLEASE ADVISE?</pattern><template>hi my opinion i see no reason to be concerned about familial atypical mole malignant melanoma syndrome just keep up checking the moles periodically good luck</template></category>
+<category><pattern>AFTER RECONSTRUCTIVE SURGERY I HAVE EXTREME PAIN WHEN I RELAX BLADDER MUSCLES?</pattern><template>hi this is normal to have such pain after catheter removal so there is nothing to worry about however pain can be due to urine concentration in which case you will need to drink lots of fluid to reduce the concentration good luck</template></category> -->
+
+
 
 <category>
 <pattern>WHAT IS EIGHT PLUS EIGHT</pattern>
