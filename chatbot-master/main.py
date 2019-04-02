@@ -142,13 +142,13 @@ def ask():
 		if distress.split(' ')[0] == "call":
 			receiver = distress.split(' ')[1]
 			print(receiver)
-			account_sid = "ACead452ce756e314717f4cee6e0cac0c7"
-			auth_token = "36308443a7f8388787f4e4f9969bc6fc"
+			account_sid = ""#Enter your twilio acc_ID
+			auth_token = ""#Enter your twilio auth token
 			# (201) 817-4840 Twilio number
 			client = Client(account_sid,auth_token)
 			call = client.calls.create(
-					to = "+919821593690",
-					from_ = "+12018174840",
+					to = "",#Enter your personal mobile number
+					from_ = "", #Enter your twilio number 
 					url = "http://demo.twilio.com/docs/voice.xml"
 				)
 			print(call.sid)
